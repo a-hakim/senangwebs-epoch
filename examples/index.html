@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenangWebs Epoch Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../dist/swe.css">
+</head>
+
+<body class="min-h-screen bg-gray-100">
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h4 class="text-xl lg:text-2xl capitalize font-bold mb-4">SenangWebs Epoch</h4>
+
+        <div class="flex flex-col gap-8">
+            <!-- Countdown to a specific date-time -->
+            <div data-swe data-swe-countdown-end="2025-01-01 00:00:00">
+                <div data-swe-year data-swe-format="yyyy"></div>
+                <div data-swe-month data-swe-format="mm"></div>
+                <div data-swe-day data-swe-format="dd"></div>
+                <div data-swe-hour data-swe-format="HH"></div>
+                <div data-swe-minute data-swe-format="mm"></div>
+                <div data-swe-second data-swe-format="ss"></div>
+            </div>
+
+            <!-- Countdown for 10 seconds -->
+            <div data-swe data-swe-countdown-duration="10">
+                <div data-swe-second data-swe-format="ss"></div>
+            </div>
+
+            <!-- Display current time -->
+            <div data-swe data-swe-current>
+                <div data-swe-hour data-swe-format="HH"></div>
+                <div data-swe-minute data-swe-format="mm"></div>
+                <div data-swe-second data-swe-format="ss"></div>
+            </div>
+
+            <!-- Timer for 15 seconds -->
+            <div id="timer" class="flex gap-4 p-4 bg-gray-300 rounded-xl max-w-max">
+                <div data-swe-hour data-swe-format="HH" class="w-12 bg-gray-200 aspect-square flex items-center justify-center rounded-lg"></div>
+                <div data-swe-minute data-swe-format="mm" class="w-12 bg-gray-200 aspect-square flex items-center justify-center rounded-lg"></div>
+                <div data-swe-second data-swe-format="ss" class="w-12 bg-gray-200 aspect-square flex items-center justify-center rounded-lg"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../dist/swe.js"></script>
+
+    <script>
+        let timer;
+        document.addEventListener('DOMContentLoaded', () => {
+            timer = new SWE(document.querySelector('#timer'), {
+                autostart: true,
+                duration: 15,
+                // countdownEnd: '2025-01-01 00:00:00',
+                onTick: () => {
+                    console.log('Timer ticked!');
+                },
+                onEnd: () => {
+                    console.log('Timer finished!');
+                }
+            });
+
+            // Event listening
+            timer.element.addEventListener('swe:end', () => {
+                console.log('Timer finished! Event listening');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
