@@ -1,6 +1,3 @@
-[![SenangWebs](https://raw.githubusercontent.com/a-hakim/senangwebs-epoch/refs/heads/main/src/sw_banner.webp)](https://use.senangwebs.com)
-Learn more at [SenangWebs.com](https://use.senangwebs.com)
-
 # SenangWebs Epoch (SWE)
 
 SenangWebs Epoch (SWE) is a lightweight JavaScript library for creating dynamic countdown timers and time displays. Whether you need to count down to a specific date, create a duration-based timer, or display the current time, SWE provides an elegant solution with minimal setup. The library supports flexible formatting, responsive design, and comprehensive event handling.
