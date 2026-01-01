@@ -94,6 +94,25 @@ Include SenangWebs Epoch directly in your HTML file:
   - `data-swe-second`
 - `data-swe-format`: Specifies display format for each unit
 
+### Format Options
+
+The format string determines zero-padding based on its length:
+
+| Unit | Format | Output Example | Description |
+|------|--------|----------------|-------------|
+| Year | `yyyy` | `2026` | Four-digit year |
+| Month | `m` | `5` | Single digit month |
+| Month | `mm` | `05` | Two-digit month |
+| Day | `d` | `5` | Single digit day |
+| Day | `dd` | `05` | Two-digit day |
+| Day | `ddd` | `005` | Three-digit day (for long countdowns) |
+| Hour | `H` | `9` | Single digit hour |
+| Hour | `HH` | `09` | Two-digit hour |
+| Minute | `m` | `7` | Single digit minute |
+| Minute | `mm` | `07` | Two-digit minute |
+| Second | `s` | `3` | Single digit second |
+| Second | `ss` | `03` | Two-digit second |
+
 ### JavaScript Initialization
 
 ```javascript
@@ -190,7 +209,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+MIT License
 
 ## Support
 
