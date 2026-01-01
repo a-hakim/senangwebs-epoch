@@ -2,7 +2,8 @@
   "name": "senangwebs-epoch",
   "version": "1.1.2",
   "description": "Lightweight JavaScript library for creating dynamic countdown timers and time displays.",
-  "main": "index.js",
+  "main": "dist/swe.js",
+  "module": "dist/swe.js",
   "directories": {
     "example": "examples"
   },
@@ -11,7 +12,7 @@
     "dev": "webpack --mode development --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["image", "carousel", "web", "customizable"],
+  "keywords": ["countdown", "timer", "time", "epoch", "javascript", "date", "clock"],
   "author": "a-hakim",
   "license": "MIT",
   "devDependencies": {

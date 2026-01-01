@@ -1,7 +1,9 @@
 /**
  * SenangWebs Epoch (SWE) - A JavaScript library for countdown timers and time display
- * Version: 1.1.1
+ * Version: 1.1.2
  */
+
+import '../css/swe.css';
 
 class SWE {
     constructor(element, options = {}) {
@@ -208,20 +210,38 @@ class SWE {
     }
 
     calculateTimeUnits(milliseconds) {
-        const seconds = Math.floor(milliseconds / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
-        const months = Math.floor(days / 30);
-        const years = Math.floor(days / 365);
+        // Calculate using proper date math for accuracy
+        const totalSeconds = Math.floor(milliseconds / 1000);
+        const totalMinutes = Math.floor(totalSeconds / 60);
+        const totalHours = Math.floor(totalMinutes / 60);
+        const totalDays = Math.floor(totalHours / 24);
+        
+        // Use date-based calculation for months and years
+        const now = new Date();
+        const futureDate = new Date(now.getTime() + milliseconds);
+        
+        let years = futureDate.getFullYear() - now.getFullYear();
+        let months = futureDate.getMonth() - now.getMonth();
+        let days = futureDate.getDate() - now.getDate();
+        
+        // Normalize negative values
+        if (days < 0) {
+            months--;
+            const prevMonth = new Date(futureDate.getFullYear(), futureDate.getMonth(), 0);
+            days += prevMonth.getDate();
+        }
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
 
         return {
             year: years,
-            month: months % 12,
-            day: days % 30,
-            hour: hours % 24,
-            minute: minutes % 60,
-            second: seconds % 60
+            month: months,
+            day: days,
+            hour: totalHours % 24,
+            minute: totalMinutes % 60,
+            second: totalSeconds % 60
         };
     }
 
@@ -252,7 +272,21 @@ class SWE {
 
     resume() {
         if (this.isPaused) {
-            this.start();
+            this.isPaused = false;
+            this.startTime = Date.now();
+
+            switch (this.mode) {
+                case 'countdown-end':
+                    this.startCountdownToDate();
+                    break;
+                case 'countdown-duration':
+                    this.startCountdownDuration();
+                    break;
+                case 'current':
+                    this.startCurrentTime();
+                    break;
+            }
+
             this.dispatchEvent('resume');
         }
     }
@@ -279,10 +313,13 @@ class SWE {
     }
 
     stop() {
+        const wasRunning = this.intervalId !== null;
         if (this.intervalId) {
             clearInterval(this.intervalId);
             this.intervalId = null;
-            this.isPaused = false;
+        }
+        this.isPaused = false;
+        if (wasRunning) {
             this.dispatchEvent('stop');
         }
     }

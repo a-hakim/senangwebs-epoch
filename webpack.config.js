@@ -2,12 +2,9 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: {
-    swe: './src/js/swe.js',
-    style: './src/css/swe.css',
-  },
+  entry: './src/js/swe.js',
   output: {
-    filename: '[name].js',
+    filename: 'swe.js',
     path: path.resolve(__dirname, 'dist'),
     library: {
       name: 'SWE',
