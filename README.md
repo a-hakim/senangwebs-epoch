@@ -2,6 +2,8 @@
 
 SenangWebs Epoch (SWE) is a lightweight JavaScript library for creating dynamic countdown timers and time displays. Whether you need to count down to a specific date, create a duration-based timer, or display the current time, SWE provides an elegant solution with minimal setup. The library supports flexible formatting, responsive design, and comprehensive event handling.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
+
 ## Features
 
 - Multiple timer modes:
