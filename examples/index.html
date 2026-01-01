@@ -4,71 +4,450 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SenangWebs Epoch Demo</title>
+    <title>SenangWebs Epoch - Examples & Use Cases</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../dist/swe.css">
+    <link rel="stylesheet" href="https://unpkg.com/@bookklik/senangstart-icons/dist/senangstart.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .timer-unit {
+            transition: all 0.3s ease;
+        }
+        .timer-unit:hover {
+            transform: scale(1.05);
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6); }
+        }
+        .flash-sale-glow {
+            animation: pulse-glow 2s infinite;
+        }
+    </style>
 </head>
 
-<body class="min-h-screen bg-gray-100">
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 font-sans">
+
+    <!-- Hero Header -->
+    <header class="bg-gradient-to-br from-[#00FF99] to-[#007370] text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl lg:text-5xl font-extrabold mb-4 drop-shadow-lg">SenangWebs Epoch</h1>
+            <p class="text-xl text-white/90 max-w-2xl mx-auto">A lightweight JavaScript library for creating dynamic countdown timers and time displays. Perfect for any time-sensitive content.</p>
+        </div>
+    </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h4 class="text-xl lg:text-2xl capitalize font-bold mb-4">SenangWebs Epoch</h4>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        <div class="flex flex-col gap-8">
-            <!-- Countdown to a specific date-time -->
-            <div data-swe data-swe-countdown-end="2030-12-31 00:00:00">
-                <div data-swe-year data-swe-format="yyyy"></div>
-                <div data-swe-month data-swe-format="mm"></div>
-                <div data-swe-day data-swe-format="dd"></div>
-                <div data-swe-hour data-swe-format="HH"></div>
-                <div data-swe-minute data-swe-format="mm"></div>
-                <div data-swe-second data-swe-format="ss"></div>
-            </div>
+        <!-- Section: Event Countdowns -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span class="ss ss-calendar text-2xl"></span> Event Countdowns</h2>
+            <p class="text-gray-600 mb-6">Perfect for building anticipation for upcoming events, launches, or celebrations.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <!-- New Year Countdown -->
+                <div class="glass-card rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="ss ss-star text-3xl text-amber-500"></span>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">New Year Countdown</h3>
+                            <p class="text-sm text-gray-500">Count down to the new year celebration</p>
+                        </div>
+                    </div>
+                    <div id="new-year" data-swe data-swe-countdown-end="2027-01-01 00:00:00" class="flex flex-wrap gap-3 justify-center">
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-day data-swe-format="ddd" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Days</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-hour data-swe-format="HH" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Hours</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-minute data-swe-format="mm" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Mins</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-second data-swe-format="ss" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Secs</span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Countdown for 10 seconds -->
-            <div data-swe data-swe-countdown-duration="10">
-                <div data-swe-second data-swe-format="ss"></div>
-            </div>
+                <!-- Product Launch -->
+                <div class="glass-card rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="ss ss-bolt text-3xl text-blue-500"></span>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Product Launch</h3>
+                            <p class="text-sm text-gray-500">Building excitement for your next big release</p>
+                        </div>
+                    </div>
+                    <div id="product-launch" data-swe data-swe-countdown-end="2026-06-15 09:00:00" class="flex flex-wrap gap-3 justify-center">
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-blue-500 to-cyan-400 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-month data-swe-format="mm" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Months</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-blue-500 to-cyan-400 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-day data-swe-format="dd" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Days</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-blue-500 to-cyan-400 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-hour data-swe-format="HH" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Hours</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-blue-500 to-cyan-400 text-white rounded-xl p-4 min-w-[70px] shadow-lg">
+                            <span data-swe-minute data-swe-format="mm" class="text-2xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider opacity-90">Mins</span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Display current time -->
-            <div data-swe data-swe-current>
-                <div data-swe-hour data-swe-format="HH"></div>
-                <div data-swe-minute data-swe-format="mm"></div>
-                <div data-swe-second data-swe-format="ss"></div>
             </div>
+        </section>
 
-            <!-- Timer for 15 seconds -->
-            <div id="timer" class="flex gap-4 p-4 bg-gray-300 rounded-xl max-w-max">
-                <div data-swe-hour data-swe-format="HH" class="w-12 bg-gray-200 aspect-square flex items-center justify-center rounded-lg"></div>
-                <div data-swe-minute data-swe-format="mm" class="w-12 bg-gray-200 aspect-square flex items-center justify-center rounded-lg"></div>
-                <div data-swe-second data-swe-format="ss" class="w-12 bg-gray-200 aspect-square flex items-center justify-center rounded-lg"></div>
+        <!-- Section: E-Commerce -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span class="ss ss-shopping-cart text-2xl"></span> E-Commerce & Sales</h2>
+            <p class="text-gray-600 mb-6">Create urgency and drive conversions with time-limited offers.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <!-- Flash Sale -->
+                <div class="bg-gradient-to-br from-red-600 to-rose-700 rounded-2xl p-6 shadow-xl flash-sale-glow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="ss ss-thunder text-3xl text-yellow-300 animate-bounce"></span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Flash Sale Ending Soon!</h3>
+                            <p class="text-sm text-white/80">Up to 70% OFF - Limited Time</p>
+                        </div>
+                    </div>
+                    <div id="flash-sale" class="flex flex-wrap gap-3 justify-center">
+                        <div class="timer-unit flex flex-col items-center bg-white/20 backdrop-blur text-white rounded-xl p-4 min-w-[70px]">
+                            <span data-swe-hour data-swe-format="HH" class="text-3xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider">Hours</span>
+                        </div>
+                        <div class="text-3xl font-bold text-white self-center">:</div>
+                        <div class="timer-unit flex flex-col items-center bg-white/20 backdrop-blur text-white rounded-xl p-4 min-w-[70px]">
+                            <span data-swe-minute data-swe-format="mm" class="text-3xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider">Mins</span>
+                        </div>
+                        <div class="text-3xl font-bold text-white self-center">:</div>
+                        <div class="timer-unit flex flex-col items-center bg-white/20 backdrop-blur text-white rounded-xl p-4 min-w-[70px]">
+                            <span data-swe-second data-swe-format="ss" class="text-3xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider">Secs</span>
+                        </div>
+                    </div>
+                    <button class="mt-4 w-full bg-white text-red-600 font-bold py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">
+                        Shop Now →
+                    </button>
+                </div>
+
+                <!-- Limited Offer -->
+                <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 shadow-xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="ss ss-gift text-3xl text-white"></span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Free Shipping Offer</h3>
+                            <p class="text-sm text-white/80">Order now to get free delivery!</p>
+                        </div>
+                    </div>
+                    <div id="shipping-offer" class="flex flex-wrap gap-3 justify-center">
+                        <div class="timer-unit flex flex-col items-center bg-white/20 backdrop-blur text-white rounded-xl p-4 min-w-[70px]">
+                            <span data-swe-hour data-swe-format="HH" class="text-3xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider">Hours</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-white/20 backdrop-blur text-white rounded-xl p-4 min-w-[70px]">
+                            <span data-swe-minute data-swe-format="mm" class="text-3xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider">Mins</span>
+                        </div>
+                        <div class="timer-unit flex flex-col items-center bg-white/20 backdrop-blur text-white rounded-xl p-4 min-w-[70px]">
+                            <span data-swe-second data-swe-format="ss" class="text-3xl font-bold"></span>
+                            <span class="text-xs uppercase tracking-wider">Secs</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center text-white/90 text-sm">
+                        <span class="ss ss-truck mr-1"></span> Orders placed within this time ship FREE!
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </section>
+
+        <!-- Section: Productivity & Utility -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span class="ss ss-cog-6-tooth text-2xl"></span> Productivity & Utility</h2>
+            <p class="text-gray-600 mb-6">Useful timers for sessions, focus work, and everyday tasks.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Session Timer -->
+                <div class="glass-card rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="ss ss-lock-closed text-3xl text-gray-700"></span>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Session Timeout</h3>
+                            <p class="text-sm text-gray-500">Auto-logout warning timer</p>
+                        </div>
+                    </div>
+                    <div id="session-timer" class="text-center">
+                        <div class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 rounded-full px-4 py-2 text-sm font-medium mb-3">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                            Session expires in
+                        </div>
+                        <div class="flex justify-center gap-2">
+                            <div class="timer-unit bg-gray-800 text-white rounded-lg px-4 py-3 min-w-[60px]">
+                                <span data-swe-minute data-swe-format="mm" class="text-2xl font-mono font-bold"></span>
+                            </div>
+                            <span class="text-2xl font-bold text-gray-400 self-center">:</span>
+                            <div class="timer-unit bg-gray-800 text-white rounded-lg px-4 py-3 min-w-[60px]">
+                                <span data-swe-second data-swe-format="ss" class="text-2xl font-mono font-bold"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pomodoro Timer -->
+                <div class="glass-card rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="ss ss-crosshair text-3xl text-red-500"></span>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Pomodoro Timer</h3>
+                            <p class="text-sm text-gray-500">25-minute focus sessions</p>
+                        </div>
+                    </div>
+                    <div id="pomodoro" class="text-center">
+                        <div class="relative inline-flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-red-400 to-red-600 shadow-lg mb-3">
+                            <div class="flex items-baseline gap-1 text-white">
+                                <span data-swe-minute data-swe-format="mm" class="text-3xl font-bold"></span>
+                                <span class="text-xl">:</span>
+                                <span data-swe-second data-swe-format="ss" class="text-3xl font-bold"></span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-2">
+                            <button id="pomodoro-pause" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Pause</button>
+                            <button id="pomodoro-reset" class="bg-red-100 hover:bg-red-200 text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Time Clock -->
+                <div class="glass-card rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="ss ss-clock text-3xl text-slate-700"></span>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Live Clock</h3>
+                            <p class="text-sm text-gray-500">Current local time display</p>
+                        </div>
+                    </div>
+                    <div id="live-clock" data-swe data-swe-current class="text-center">
+                        <div class="inline-flex items-center gap-1 bg-gradient-to-br from-slate-700 to-slate-900 text-white rounded-xl p-4 shadow-lg">
+                            <span data-swe-hour data-swe-format="HH" class="text-4xl font-mono font-bold"></span>
+                            <span class="text-4xl font-bold animate-pulse">:</span>
+                            <span data-swe-minute data-swe-format="mm" class="text-4xl font-mono font-bold"></span>
+                            <span class="text-4xl font-bold animate-pulse">:</span>
+                            <span data-swe-second data-swe-format="ss" class="text-4xl font-mono font-bold"></span>
+                        </div>
+                        <p class="mt-3 text-gray-500 text-sm">Auto-updates every second</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section: Interactive Demo -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span class="ss ss-controller text-2xl"></span> Interactive Controls</h2>
+            <p class="text-gray-600 mb-6">Demonstrates the full control API with pause, resume, and reset functionality.</p>
+            
+            <div class="glass-card rounded-2xl p-8 shadow-lg max-w-xl mx-auto">
+                <div class="text-center mb-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Controllable Timer</h3>
+                    <p class="text-sm text-gray-500">A 60-second timer with full controls</p>
+                </div>
+                
+                <div id="interactive-timer" class="flex justify-center gap-4 mb-6">
+                    <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-violet-500 to-purple-600 text-white rounded-xl p-5 min-w-[80px] shadow-lg">
+                        <span data-swe-minute data-swe-format="mm" class="text-4xl font-bold"></span>
+                        <span class="text-xs uppercase tracking-wider opacity-90">Mins</span>
+                    </div>
+                    <div class="timer-unit flex flex-col items-center bg-gradient-to-br from-violet-500 to-purple-600 text-white rounded-xl p-5 min-w-[80px] shadow-lg">
+                        <span data-swe-second data-swe-format="ss" class="text-4xl font-bold"></span>
+                        <span class="text-xs uppercase tracking-wider opacity-90">Secs</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button id="btn-start" class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-medium transition-colors shadow-md">
+                        <span class="ss ss-play text-lg"></span>
+                        Start
+                    </button>
+                    <button id="btn-pause" class="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl font-medium transition-colors shadow-md">
+                        <span class="ss ss-pause text-lg"></span>
+                        Pause
+                    </button>
+                    <button id="btn-resume" class="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl font-medium transition-colors shadow-md">
+                        <span class="ss ss-play-circle text-lg"></span>
+                        Resume
+                    </button>
+                    <button id="btn-reset" class="flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 rounded-xl font-medium transition-colors shadow-md">
+                        <span class="ss ss-arrow-path text-lg"></span>
+                        Reset
+                    </button>
+                </div>
+                
+                <div id="event-log" class="mt-6 bg-gray-900 text-green-400 font-mono text-xs p-4 rounded-xl max-h-32 overflow-y-auto">
+                    <p class="text-gray-500"># Event log - interactions will appear here</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Code Examples -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span class="ss ss-code text-2xl"></span> Quick Start Guide</h2>
+            <p class="text-gray-600 mb-6">Get started with SenangWebs Epoch in seconds.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-gray-900 rounded-2xl p-6 shadow-xl">
+                    <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                        <span class="bg-green-500 text-xs px-2 py-1 rounded">HTML</span>
+                        Data Attribute Method
+                    </h4>
+                    <pre class="text-sm text-gray-300 overflow-x-auto"><code>&lt;!-- Countdown to date --&gt;
+&lt;div data-swe data-swe-countdown-end="2026-12-31 00:00:00"&gt;
+    &lt;div data-swe-day data-swe-format="dd"&gt;&lt;/div&gt;
+    &lt;div data-swe-hour data-swe-format="HH"&gt;&lt;/div&gt;
+    &lt;div data-swe-minute data-swe-format="mm"&gt;&lt;/div&gt;
+    &lt;div data-swe-second data-swe-format="ss"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                
+                <div class="bg-gray-900 rounded-2xl p-6 shadow-xl">
+                    <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                        <span class="bg-yellow-500 text-xs px-2 py-1 rounded text-black">JS</span>
+                        JavaScript Method
+                    </h4>
+                    <pre class="text-sm text-gray-300 overflow-x-auto"><code>const timer = new SWE(element, {
+    autostart: true,
+    duration: 300, // 5 minutes
+    onTick: () => console.log('Tick!'),
+    onEnd: () => alert('Time is up!')
+});
+
+// Control methods
+timer.pause();
+timer.resume();
+timer.reset();</code></pre>
+                </div>
+            </div>
+        </section>
 
     </main>
 
     <script src="../dist/swe.js"></script>
 
     <script>
-        let timer;
         document.addEventListener('DOMContentLoaded', () => {
-            timer = new SWE(document.querySelector('#timer'), {
+            
+            // Flash Sale - 2 hours countdown
+            const flashSale = new SWE(document.querySelector('#flash-sale'), {
                 autostart: true,
-                duration: 15,
-                // countdownEnd: '2025-01-01 00:00:00',
-                onTick: () => {
-                    console.log('Timer ticked!');
-                },
+                duration: 7200, // 2 hours
                 onEnd: () => {
-                    console.log('Timer finished!');
+                    document.querySelector('#flash-sale').innerHTML = '<p class="text-white text-xl font-bold">Sale Ended!</p>';
                 }
             });
 
-            // Event listening
-            timer.element.addEventListener('swe:end', () => {
-                console.log('Timer finished! Event listening');
+            // Free Shipping Offer - 4 hours
+            const shippingOffer = new SWE(document.querySelector('#shipping-offer'), {
+                autostart: true,
+                duration: 14400, // 4 hours
             });
+
+            // Session Timer - 5 minutes
+            const sessionTimer = new SWE(document.querySelector('#session-timer'), {
+                autostart: true,
+                duration: 300,
+                onEnd: () => {
+                    alert('Your session has expired! Please log in again.');
+                }
+            });
+
+            // Pomodoro Timer - 25 minutes
+            let pomodoroTimer = new SWE(document.querySelector('#pomodoro'), {
+                autostart: true,
+                duration: 1500, // 25 minutes
+                onEnd: () => {
+                    alert('🍅 Pomodoro complete! Take a 5-minute break.');
+                }
+            });
+
+            document.querySelector('#pomodoro-pause').addEventListener('click', () => {
+                pomodoroTimer.isPaused ? pomodoroTimer.resume() : pomodoroTimer.pause();
+                document.querySelector('#pomodoro-pause').textContent = pomodoroTimer.isPaused ? 'Resume' : 'Pause';
+            });
+
+            document.querySelector('#pomodoro-reset').addEventListener('click', () => {
+                pomodoroTimer.reset();
+            });
+
+            // Interactive Timer - 60 seconds
+            const interactiveTimer = new SWE(document.querySelector('#interactive-timer'), {
+                autostart: false,
+                duration: 60,
+                onStart: () => logEvent('Timer started'),
+                onPause: () => logEvent('Timer paused'),
+                onResume: () => logEvent('Timer resumed'),
+                onReset: () => logEvent('Timer reset'),
+                onTick: () => {}, // Silent tick
+                onEnd: () => logEvent('⏰ Timer ended!')
+            });
+
+            // Control buttons
+            document.querySelector('#btn-start').addEventListener('click', () => interactiveTimer.start());
+            document.querySelector('#btn-pause').addEventListener('click', () => interactiveTimer.pause());
+            document.querySelector('#btn-resume').addEventListener('click', () => interactiveTimer.resume());
+            document.querySelector('#btn-reset').addEventListener('click', () => interactiveTimer.reset());
+
+            // Event log
+            function logEvent(message) {
+                const log = document.querySelector('#event-log');
+                const time = new Date().toLocaleTimeString();
+                log.innerHTML += `<p>[${time}] ${message}</p>`;
+                log.scrollTop = log.scrollHeight;
+            }
+
+            // Listen for events
+            const timerEl = document.querySelector('#interactive-timer');
+            ['start', 'pause', 'resume', 'reset', 'end'].forEach(event => {
+                timerEl.addEventListener(`swe:${event}`, () => {
+                    logEvent(`Event: swe:${event} fired`);
+                });
+            });
+
         });
     </script>
 
