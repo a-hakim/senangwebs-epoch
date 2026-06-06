@@ -15,6 +15,7 @@ SenangWebs Epoch (SWE) is a lightweight JavaScript library for creating dynamic 
 - Responsive design out of the box
 - Comprehensive event system
 - Pause, resume, and reset functionality
+- Completed and expired countdowns stop cleanly and emit `swe:end` once
 - No external dependencies
 - Built-in default styling with CSS
 - Works on all modern browsers
@@ -50,7 +51,7 @@ Include SenangWebs Epoch directly in your HTML file:
 ### Countdown to a specific date
 
 ```html
-<div data-swe data-swe-countdown-end="2025-01-01 00:00:00">
+<div data-swe data-swe-countdown-end="2027-01-01T00:00:00">
     <div data-swe-year data-swe-format="yyyy"></div>
     <div data-swe-month data-swe-format="mm"></div>
     <div data-swe-day data-swe-format="dd"></div>
@@ -121,7 +122,7 @@ The format string determines zero-padding based on its length:
 const timer = new SWE(element, {
     autostart: true,
     duration: 60, // for countdown-duration mode
-    countdownEnd: '2025-01-01 00:00:00', // for countdown-end mode
+    countdownEnd: '2027-01-01T00:00:00', // ISO 8601, interpreted as local time
     onTick: () => {
         console.log('Timer ticked!');
     },
@@ -176,6 +177,10 @@ Available events:
 - `swe:reset`
 - `swe:stop`
 - `swe:end`
+
+`swe:end` is emitted once when a countdown reaches zero. A countdown that is
+already expired during initialization displays zero and does not leave a
+background interval running.
 
 ## Styling
 

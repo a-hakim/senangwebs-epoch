@@ -149,18 +149,17 @@ class SWE {
                 this.stop();
                 this.updateDisplay(0);
                 this.dispatchEvent('end');
-                return;
+                return false;
             }
 
             this.updateDisplay(remaining);
             this.dispatchEvent('tick');
+            return true;
         };
 
-        // Initial update
-        update();
-        
-        // Set interval for subsequent updates
-        this.intervalId = setInterval(update, 1000);
+        if (update()) {
+            this.intervalId = setInterval(update, 1000);
+        }
     }
 
     startCurrentTime() {
